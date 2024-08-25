@@ -24,27 +24,61 @@
     Install the zip folder [here](https://nlp.stanford.edu/software/stanford-corenlp-full-2018-10-05.zip)
 4. **Extract needed files:**
     
-    From the zip folder, you only need two files:
+    From the zip folder, you only need one file:
     ```bash
     stanford-corenlp-3.9.2.jar
-    stanford-english-corenlp-2018-10-05.jar
     ```
-    The third file you will need can be found [here](https://repo1.maven.org/maven2/com/googlecode/efficient-java-matrix-library/ejml/0.23/ejml-0.23.jar)
+    The second & third file you will need can be found [here](https://repo1.maven.org/maven2/com/googlecode/efficient-java-matrix-library/ejml/0.23/ejml-0.23.jar) and [here](https://nlp.stanford.edu/software/stanford-english-corenlp-2018-10-05-models.jar)
 5. **Create new folder for dependencies:**
     - In TweetInsight folder, create a new folder 'lib' or 'dependencies'
     - Place the three jar files in it
-6. **Compile and run the project:**
+6. **Compile the project:**
     
-    if you made your dependencies folder 'lib'
-    ```bash
-    javac -cp "lib/*:." -d . src/*.java
-    ```
-    'dependencies'
-    ```bash
-    javac -cp "dependencies/*:." -d . src/*.java
-    ```
-    Finally, run the project:
-    ```bash
-    java -cp "lib/*:." src.Driver
-    ```
+    If you named your dependencies folder **'lib'**
+    
+    - **MacOS/Linux:**
+        ```bash
+        javac -cp "lib/*:." -d . src/*.java
+        ```
+    - **Windows:**
+        ```bash
+        javac -cp "lib/*;." -d . src/*.java
+        ```
+    If you named your dependencied folder **'dependencies'**
 
+    - **MacOS/Linux:**
+        ```bash
+        javac -cp "dependencies/*:." -d . src/*.java
+        ```
+    - **Windows:**
+        ```bash
+        javac -cp "dependencies/*;." -d . src/*.java
+        ```
+7. **Run the project:**
+
+    - **MacOS/Linux:**
+
+        ```bash
+        java -cp "lib/*:." src.Driver
+        ```
+
+    - **Windows:**
+        ```bash
+        java -cp "lib/*;." src.Driver
+        ```
+
+Your output should look something like this:
+
+- First you'll see various numbers printed out, these signify the day each tweet in the data set was posted:
+
+    ![Days](./assets/days.png)
+
+- The next unique output should be the top words in the tweets in the specified temporal range, the default range is from March 20 2020 - January 15 2021. 
+
+    ![Words](./assets/words.PNG)
+
+    You can change the range of dates in Driver.java for different results.
+
+- Lastly, you'll see each tweet displayed with its corresponding sentiment analysis score based on the words in the tweet:
+
+    ![Tweets](./assets/tweets.PNG)
